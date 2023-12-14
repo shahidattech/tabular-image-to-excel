@@ -479,14 +479,14 @@ def applyImagePreprocessing():
 
 
 
-def startExtractionProcess(table_skeleton,img_tbl):
+def startExtractionProcess(img_tbl):
     try:
 
-        table_image_contour = table_skeleton # skeleton of the table is passed
+        # table_image_contour = table_skeleton # skeleton of the table is passed
         extract_image = img_tbl #table image is passed
         
         dilated_value, table_image_counter = applyImagePreprocessing()
-        extract_image = table_image_contour
+        extract_image = table_image_counter
         
         cnts, hierarchy = cv2.findContours(
         dilated_value, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
@@ -524,7 +524,7 @@ if __name__ == "__main__":
     try:
 
         # checkAndMergeCellUsingPandas()
-        startExtractionProcess('s',config.imageBaseDir+config.inputImage)
+        startExtractionProcess(config.imageBaseDir+config.inputImage)
         print('Saving file')
         
     except Exception as err:
